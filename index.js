@@ -20,8 +20,6 @@ if (process.argv.slice(4)[0]) {
   selector_wrapper = process.argv.slice(4)[0].replace('--wrapper=','');
 }
 
-/* default */
-
 var test = {
   init: function() {
     var scope = this;
@@ -43,11 +41,14 @@ var test = {
     });
   },
   registerMark: function() {
-    var html_code = '&trade;';
+    var html_code = '&reg;';
     var html_decoded = htmlentities.decode(html_code);
-    describe('For a Register Marks', function() {
+    var regexexp = new RegExp(html_decoded,'g');
+    describe('For a Register Marks code ' + html_code + ' -> ' + html_decoded, function() {
       it('Should it be inside sup tag', function(done) {
-        assert.strictEqual($(selector_wrapper + ' sup').text().match(/®/g).length, $(selector_wrapper).text().match(/®/g).length , '');
+        if ($(selector_wrapper).text().match(regexexp)) {
+          assert.strictEqual($(selector_wrapper + ' sup').text().match(regexexp).length, $(selector_wrapper).text().match(regexexp).length , '');
+        }
         done();
       });
     });
