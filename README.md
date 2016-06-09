@@ -3,19 +3,28 @@
 # Install Mocha
 
 https://mochajs.org/#installation
+$ npm -g install mocha
 
 # Chai Assert Documentation
 
 http://chaijs.com/api/assert/
 
 # Usage
+mocha index.js --url="http://example.com" 
 
-mocha index.js --url="http://example.com" --wrapper=".selector"
+### Basic HTTP authentication
+* --username="user"
+* --username="password"
 
-# Parameters
+mocha index.js --url="http://example.com"  --username="user" --username="password"
 
-Required
---url
+### Search in a section 
+mocha index.js --url="http://example.com"  --wrapper=".selector"
 
-Optional
---wrapper
+##### Required
+* --url="http://example.com"
+
+##### Optional
+* --wrapper=".selector"
+* --username="user"
+* --username="password"
